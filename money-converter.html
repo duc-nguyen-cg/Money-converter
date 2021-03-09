@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đổi tiền</title>
+    <style>
+        .res{
+            border: 1px solid gray;
+            width: 100px; height: 50px;
+        }
+        .text{
+            margin-bottom: 0px;
+        }
+        .bt{
+            background-color: blue;
+            color: white;
+        }
+        td{
+            text-align: center;
+            border: 1px solid gray;
+            width: 150px; height: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<h3> Chương trình chuyển đổi tiền tệ</h3>
+<form>
+    <p>Amount <input id="value1" type="number"/></p>
+    <p>
+        <p class="text"> From Currency</p>
+        <select id="select1" onchange="Currency1()">
+            <option value="VietNam"> VietNam</option>
+            <option value="USD"> USD</option>
+        </select>
+    </p>
+
+    <p class="text"> To Currency</p>
+    <select id="select2" onchange="Currency2()">
+        <option value="USD"> USD</option>
+        <option value="VietNam"> VietNam</option>
+    </select>
+    <br><br>
+    <input type=button class="bt" value="Convert" id="convert" onclick="Convert()">
+    <br>
+    <table>
+        <tr>
+            <td><p type="number" id="value2"></p></td>
+        </tr>
+    </table>
+
+</form>
+</body>
+</html>
+<script>
+    //cập nhật loại tiền
+    function Currency1() {
+        let x = document.getElementById("select1").value;
+        return x;
+    }
+    function Currency2(){
+        let y = document.getElementById("select2").value;
+        return y;
+    }
+    // hàm chuyển đổi
+    function Convert() {
+        let init = +document.getElementById("value1").value;
+        let x = Currency1();
+        let y = Currency2();
+        let final = 0;
+        if (x != y ) {
+            if (x == "VietNam"){
+                final = init / 23000;
+
+            } else{
+                final = init*23000;
+            }
+        } else {
+            final = init;
+        }
+        let result = final.toFixed(2);
+        document.getElementById("value2").innerHTML = result;
+    }
+</script>
